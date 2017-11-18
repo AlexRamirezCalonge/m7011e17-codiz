@@ -1,0 +1,43 @@
+.App {
+}
+
+.Nav-bar{
+  background-color: #266;
+  height: auto;
+}
+
+button{
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #1883ba;
+  }
+
+.App-logo {
+  margin-left: 50px;
+  height: 70px;
+}
+
+.Play{
+  width: 500px;
+  font-size: 60px;
+}
+
+.Log-in{
+  position: absolute;
+  margin-left: 1050px;
+}
+
+.Sign-in{
+  position: relative;
+  margin-left: 1050px;
+}
+
+.App-intro {
+  text-align: center;
+  background-color: #298;
+  width: auto;
+  padding: 20px;
+  font-size: large;
+}
+
