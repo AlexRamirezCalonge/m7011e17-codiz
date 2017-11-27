@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.Bv9ettdV9dsBUGw0pY';
 import './App.css';
 
-export class LogIn extends Component {
+export class SignIn extends Component {
   
   render() {
     return (
@@ -12,7 +12,7 @@ export class LogIn extends Component {
         </p> 
 
         <h1>
-          Log in to [CodiZ]
+          Create a [CodiZ] account
         </h1>
 
           <p className="User">
@@ -25,14 +25,15 @@ export class LogIn extends Component {
              placeholder="Password"/>
           </p> 
 
-          <button>
-            LOG IN
-          </button>
-          
-          <p>
-            <a href="http://www.marca.com/">
-            You forgot your password?</a>
-          </p>       
+          <p className="RPassword">
+            <input type="password"
+             placeholder="Repeat Password"/>
+          </p> 
+
+          <p className="Email">
+            <input type="text"
+             placeholder="Email"/>
+          </p>   
         </div>
     );
   }

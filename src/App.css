@@ -1,4 +1,6 @@
 .App {
+  height: 100%;
+  background-color: #296;
 }
 
 .Nav-bar{
@@ -18,9 +20,13 @@ button{
   height: 70px;
 }
 
-.Play{
+.Play, .Answer{
   width: 500px;
   font-size: 60px;
+}
+
+.Content{
+  background-color: #298;
 }
 
 .Log-in{
@@ -35,9 +41,6 @@ button{
 
 .App-intro {
   text-align: center;
-  background-color: #298;
-  width: auto;
-  padding: 20px;
   font-size: large;
 }
 
