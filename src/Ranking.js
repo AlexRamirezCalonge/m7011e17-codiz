@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.Bv9ettdV9dsBUGw0pY';
 import './App.css';
 
-export class MainContent extends Component {
+export class Ranking extends Component {
 
   constructor(props){
     super(props)
@@ -27,20 +27,9 @@ export class MainContent extends Component {
           <p >
             <img src={logo} className="Main-logo" alt="logo" />
           </p>  
-          <h1> 
-            Welcome to [Codiz]
-          </h1>
-          <p>
-            <button className="Play" onClick={this.myClick}>
-              Play Now
-            </button>
-          </p>
-
-          <p>
-            <button className="PlayNoRegister" onClick={this.Selection}>
-              Play without registration
-            </button>
-          </p> 
+          <h2> 
+            This is the ranking of USER
+          </h2>
         </div>
     );
   }

@@ -20,7 +20,7 @@ button{
   height: 70px;
 }
 
-.Play, .Answer, .StartPlay{
+.Play, .Answer, .StartPlay, .LogoutButtons{
   width: 500px;
   font-size: 60px;
 }
