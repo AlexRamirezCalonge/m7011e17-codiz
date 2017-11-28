@@ -33,7 +33,10 @@ export class SignIn extends Component {
           <p className="Email">
             <input type="text"
              placeholder="Email"/>
-          </p>   
+          </p> 
+          <button className="Enter" onClick="fds">
+            SIGN IN
+          </button> 
         </div>
     );
   }

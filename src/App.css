@@ -1,11 +1,11 @@
 .App {
-  height: 100%;
   background-color: #296;
+  min-height: calc(100vh);
 }
 
 .Nav-bar{
   background-color: #266;
-  height: auto;
+  height: 80px;
 }
 
 button{
@@ -20,7 +20,7 @@ button{
   height: 70px;
 }
 
-.Play, .Answer{
+.Play, .Answer, .StartPlay{
   width: 500px;
   font-size: 60px;
 }
@@ -31,12 +31,13 @@ button{
 
 .Log-in{
   position: absolute;
-  margin-left: 1050px;
+  right: 15px;
 }
 
 .Sign-in{
-  position: relative;
-  margin-left: 1050px;
+  position: absolute;
+  right: 15px;
+  top: 45px;
 }
 
 .App-intro {

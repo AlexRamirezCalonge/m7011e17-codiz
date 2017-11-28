@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import './App.css';
 
 export class Selection extends Component {
+  constructor(props){
+    super(props)
+    this.Question = this.Question.bind(this);
+  }
+
+  Question() {
+    this.props.goQuestion();
+  }
+
   render() {
     return (
       <div className = "App-intro">
@@ -44,6 +53,11 @@ export class Selection extends Component {
           </option>
 
         </select>
+        <p>
+          <button className="StartPlay" onClick={this.Question}>
+            START
+          </button>
+        </p>
       </div>
     );
   }

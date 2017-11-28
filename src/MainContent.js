@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Selection } from './Selection.js';
-import { Question } from './Question.js';
 import logo from './logo.Bv9ettdV9dsBUGw0pY';
 import './App.css';
 
@@ -8,20 +6,18 @@ export class MainContent extends Component {
 
   constructor(props){
     super(props)
-    this.state = {
-      noRegister : false
-    }
-    this.changeSelection = this.changeSelection.bind(this);
+    this.Selection = this.Selection.bind(this);
+    this.myClick = this.myClick.bind(this);
   }
 
   myClick(){
-    alert("Log in first");
+    if(this.props.Log()){
+      this.Selection();
+    }
   }
 
-  changeSelection() {
-    this.setState({ 
-      noRegister : true
-    });
+  Selection(){
+    this.props.goSelection();
   }
 
 
@@ -41,12 +37,11 @@ export class MainContent extends Component {
           </p>
 
           <p>
-            <button className="PlayNoRegister" onClick={this.changeSelection}>
+            <button className="PlayNoRegister" onClick={this.Selection}>
               Play without registration
             </button>
           </p> 
 
-          {this.state.noRegister ? <Question /> : <Selection />}
 
 
         </div>

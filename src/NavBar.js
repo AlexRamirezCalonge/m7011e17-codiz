@@ -29,7 +29,7 @@ export class NavBar extends Component {
         <a onClick={this.Home}>
           <img src={logo} className="App-logo" alt="logo" />
         </a>
-          
+        
         <button className="Log-in" onClick={this.Login}>
           Log In
         </button>
