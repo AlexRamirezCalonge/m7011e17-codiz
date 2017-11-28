@@ -11,25 +11,42 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLogged: false
     }
     this.homepage = this.homepage.bind(this);
     this.changeLogin = this.changeLogin.bind(this);
     this.changeSignin = this.changeSignin.bind(this);
     this.changeComponent = this.changeComponent.bind(this);
+    this.changeSelection = this.changeSelection.bind(this);
+    this.changeQuestion = this.changeQuestion.bind(this);
+    this.logged = this.logged.bind(this);
+    this.trueLog = this.trueLog.bind(this);
   }
 
   changeComponent() {
     switch (this.state.id) {
       case 0:
-        return (<MainContent />)
+        return (<MainContent goSelection= {this.changeSelection} Log={this.logged}/>)
       case 1:
-        return (<LogIn />);
+        return (<LogIn LogNow={this.trueLog}/>);
       case 2:
         return (<SignIn />);
+      case 3:
+        return (<Selection goQuestion= {this.changeQuestion}/>);
+      case 4:
+        return (<Question />);
       default:
-        return (<MainContent />);
+        return (<MainContent goSelection= {this.changeSelection} Log={this.logged}/>);
     }
   }
+
+  logged(){
+    if(!this.state.isLogged){
+      alert("ALERT: LOG IN FIRST, PLEASE")
+    }else{
+      this.changeSelection();
+    }
+  } 
 
   homepage() {
     this.setState({ 
@@ -43,9 +60,28 @@ class App extends Component {
     });
   }
 
+  trueLog(){
+    this.setState({
+      isLogged: true,
+      id: 0
+    });
+  }
+
   changeSignin() {
     this.setState({ 
       id : 2
+    });
+  }
+
+  changeSelection() {
+    this.setState({
+      id : 3
+    });
+  }
+
+  changeQuestion() {
+    this.setState({
+      id : 4
     });
   }
 

@@ -3,6 +3,16 @@ import logo from './logo.Bv9ettdV9dsBUGw0pY';
 import './App.css';
 
 export class LogIn extends Component {
+
+  constructor(props){
+    super(props)
+    this.DaleLog = this.DaleLog.bind(this);
+
+  }
+
+  DaleLog(){
+    this.props.LogNow();
+  }
   
   render() {
     return (
@@ -25,7 +35,7 @@ export class LogIn extends Component {
              placeholder="Password"/>
           </p> 
 
-          <button>
+          <button onClick={this.DaleLog}>
             LOG IN
           </button>
           
