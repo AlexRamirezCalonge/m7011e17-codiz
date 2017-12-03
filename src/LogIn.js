@@ -2,20 +2,31 @@ import React, { Component } from 'react';
 import logo from './logo.Bv9ettdV9dsBUGw0pY';
 import './App.css';
 
+const prepareBody = (params) => {
+  var formBody = [];
+    for (var property in params) {
+      var encodedKey = encodeURIComponent(property);
+      var encodedValue = encodeURIComponent(params[property]);
+      formBody.push(encodedKey + "=" + encodedValue);
+    }
+    return formBody.join("&");
+}
+
+
 export class LogIn extends Component {
 
   constructor(props){
     super(props)
     this.state= {
-      name: '',
-      pass: ''
+      username: '',
+      pass: '' 
     }
     this.TryLog = this.TryLog.bind(this);
 
   }
 
   handleNameChange = (event) => {
-    this.setState({ name: event.target.value });
+    this.setState({ username: event.target.value });
   };
 
   handlePasswordChange = (event) => {
@@ -27,14 +38,48 @@ Aqui tendríamos que comprobar que el user y la password están en la base de da
 Por ahora pongo uno predefinido
 */
 
-  TryLog(){
-    if(this.state.name==='' || this.state.pass===''){
+  TryLog = () =>  {
+    
+      var params = {
+        username: this.state.username,
+        password: this.state.pass,
+      };
+      console.log(params);
+      const formBody = prepareBody(params);    
+      return fetch("https://test.castiello.tk:8443/public/login?username="+this.state.username+"&password="+this.state.pass,{method: "POST"})
+      .then((response) => response.json() )
+      .then((responseData) => {
+        console.log(responseData);
+        if(this.state.name==='' || this.state.pass===''){
+          alert('EMPTY BOXES, TRY GOING');
+        }else if(responseData.success){
+          this.props.LogNow();
+        }else{
+          alert('INCORRECT USERNAME OR PASSWORD')
+          console.log("Incorrect login")
+        }      
+      }).catch(function(e) {
+        alert( e.message);
+      } )   
+/*
+    if(this.state.username==='' || this.state.pass===''){
       alert('EMPTY BOXES, TRY GOING');
-    }else if(this.state.name==='Alex' && this.state.pass==='hola'){
-      this.props.LogNow();
-    }else{
-      alert('INCORRECT USERNAME OR PASSWORD, TRY AGAIN');
+      return
     }
+
+      fetch('https://test.castiello.tk:8443/public/login?username=Miguel&password=prueba')
+      .then( response => response.text()  )
+      .then( texto => alert( texto ));
+   */     
+        
+   /* fetch('https://test.castiello.tk:8443/public/login?username='+this.state.name+'&password='+this.state.pass).then(
+     
+      results => {
+        results.json()
+
+      });
+*/
+    
   }
   
   render() {
@@ -49,7 +94,7 @@ Por ahora pongo uno predefinido
         </h1>
 
           <p className="User">
-            <input type="text" value={this.state.name} onChange={this.handleNameChange} placeholder="Username" />
+            <input type="text" value={this.state.username} onChange={this.handleNameChange} placeholder="Username" />
           </p>
 
           <p className="Password">
