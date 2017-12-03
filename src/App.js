@@ -35,7 +35,7 @@ class App extends Component {
       case 1:
         return (<LogIn LogNow={this.trueLog}/>);
       case 2:
-        return (<SignIn />);
+        return (<SignIn Signed={this.homepage}/>);
       case 3:
         return (<Selection goQuestion= {this.changeQuestion}/>);
       case 4:
@@ -51,7 +51,7 @@ class App extends Component {
 
   logged(){
     if(!this.state.isLogged){
-      alert("ALERT: LOG IN FIRST, PLEASE")
+      alert("LOG IN FIRST, PLEASE")
     }else{
       this.changeSelection();
     }
@@ -109,8 +109,9 @@ class App extends Component {
   render() {
       return(
         <div className="App">
-          {!this.state.isLogged ? <NavBar goSignin= {this.changeSignin} goLogin= {this.changeLogin} home= {this.homepage}/> : <NavBarLog goRanking= {this.changeRanking} goLogout= {this.changeLogout} home= {this.homepage}/>}
-          
+          {!this.state.isLogged ? <NavBar goSignin= {this.changeSignin} goLogin= {this.changeLogin} home= {this.homepage}/> : 
+          <NavBarLog goRanking= {this.changeRanking} goLogout= {this.changeLogout} home= {this.homepage}/>}
+
           {this.changeComponent()}
 
         </div>

@@ -28,7 +28,7 @@ export class Ranking extends Component {
             <img src={logo} className="Main-logo" alt="logo" />
           </p>  
           <h2> 
-            This is the ranking of USER
+            This is your scores
           </h2>
         </div>
     );
