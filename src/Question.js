@@ -9,7 +9,8 @@ export class Question extends Component {
       questions: [],
       difficulty: props.difficultyId,
       theme: props.themeId,
-      quizID: 0
+      quizID: 0,
+      score: -1
     }
   }
 
@@ -32,9 +33,21 @@ export class Question extends Component {
   }
 
   sendAnswer = (event, selected) => {
+    var qn = this.state.questionNumber;
+
+    console.log(qn)
+      this.setState({
+        questionNumber: qn+1
+      }); 
+    
+    qn= qn+1;
+
+    console.log(qn)
+    
     fetch("https://test.castiello.tk:8443/private/answer/create",
         {
           method: "POST",
+          mode: "no-cors",
           credentials: "include",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify({
@@ -44,36 +57,44 @@ export class Question extends Component {
           })
         }
       )
-    .then((response) => response.json() )
-    .then((responseData) => {
-      console.log(responseData);
-      if(responseData.success){
-        this.setState({
-          questionNumber: this.state.questionNumber+1
-        });
-      }
-          
-      }).catch(function(e) {
-        alert( e.message);
-      } )       
+    .then(( ) => {
+       
+        if(qn>=10){
+
+          fetch("https://test.castiello.tk:8443/private/score/getByUserAndQuiz?quiz="+this.state.quizID,{
+            method: "GET",
+            credentials: 'include'
+          })
+          .then((response) => {
+            return response.json()
+          })
+          .then((score) => {
+            this.setState({ score: score.answersRight })
+          })
+        }
+        
+
+     })         
   }
 
 
+
+
   render() {
-    if(this.state.questionNumber>=10){
+    if(this.state.questionNumber>=10 && this.state.score >= 0){
       return(
         <div className="App-intro">
           <h2>
             Thank You for Play
           </h2> 
           <h2>
-            Your final score is : 
+            Your final score is : {this.state.score}
           </h2>
         </div>
       );
     }
 
-    if(this.state.questions.length>0){
+    if(this.state.questions.length>0 && this.state.questionNumber<10){
       return (
           <div className="App-intro"> 
             <h2> 
@@ -99,7 +120,9 @@ export class Question extends Component {
       );
     }else{
       return(
-      <h2>LOADING</h2>
+        <div className="App-intro">
+          <h2>LOADING</h2>
+        </div>
       );
     }
 

@@ -10,10 +10,17 @@ export class SignIn extends Component {
       username: '',
       password: '',
       email: '',
-      repeatPassword: ''
+      repeatPassword: '',
+      happen: ''
     }
     this.TrySignIn = this.TrySignIn.bind(this);
     this.signComplete = this.signComplete.bind(this);
+  }
+
+  somethingHappen(){
+    return(
+      this.state.happen
+    );
   }
 
   handleNameChange = (event) => {
@@ -70,34 +77,21 @@ export class SignIn extends Component {
       .then((responseData) => {
         console.log(responseData);
         if(this.state.username==='' || this.state.password==='' || this.state.email==='' || this.state.repeatPassword===''){
-          alert('EMPTY BOXES, TRY AGAIN');
+          this.setState({happen:"EMPTY BOXES, TRY AGAIN"});
         }else if(this.state.password !== this.state.repeatPassword){
-          alert('IT IS NOT THE SAME PASSWORD, TRY AGAIN')
+          this.setState({happen:"IT IS NOT THE SAME PASSWORD, TRY AGAIN"});
         }
         else if(responseData.success){
+          this.setState({happen:"YOU HAVE BEEN REGISTERED SUCCESFULLY"});
           alert('YOU HAVE BEEN REGISTERED SUCCESFULLY')
           this.signComplete();
         }else {
-          alert('USERNAME ALREADY TAKEN')
+          this.setState({happen:"USERNAME ALREADY TAKEN"});
           console.log("Incorrect sign in")
         }      
       })       
   }
-/*
-  TrySignIn(){
-    if(this.state.username==='' || this.state.password==='' || this.state.email==='' || this.state.repeatPassword===''){
-      alert('EMPTY BOXES, TRY AGAIN');
-    }else if(this.state.username==='Alex' || this.state.email==='alex.ramirez.calonge@gmail.com'){
-      //En funcion de la respuesta de la database
-      alert('USERNAME OR EMAIL ALREADY USED, TRY AGAIN');
-    }else if(this.state.password !== this.state.repeatPassword){
-      alert('IT IS NOT THE SAME PASSWORD, TRY AGAIN');
-    }else{
-      alert('YOU HAD BEEN SIGNED SUCCESFULLY. CHECK YOUR EMAIL');
-      this.signComplete()
-    }
-  }
-  */
+
   render() {
     return (
       <div className="App-intro">
@@ -124,6 +118,9 @@ export class SignIn extends Component {
           <p className="Email">
             <input type="text" value={this.state.email} onChange={this.handleEmailChange} placeholder="Email"/>
           </p> 
+          <p>
+            {this.somethingHappen()}
+          </p>
           <button className="Enter" onClick={this.TrySignIn}>
             SIGN IN
           </button> 
