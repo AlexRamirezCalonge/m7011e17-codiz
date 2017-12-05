@@ -2,24 +2,14 @@ import React, { Component } from 'react';
 import logo from './logo.Bv9ettdV9dsBUGw0pY';
 import './App.css';
 
-const prepareBody = (params) => {
-  var formBody = [];
-    for (var property in params) {
-      var encodedKey = encodeURIComponent(property);
-      var encodedValue = encodeURIComponent(params[property]);
-      formBody.push(encodedKey + "=" + encodedValue);
-    }
-    return formBody.join("&");
-}
-
-
 export class LogIn extends Component {
 
   constructor(props){
     super(props)
     this.state= {
       username: '',
-      pass: '' 
+      password: '' ,
+      happen: ''
     }
     this.TryLog = this.TryLog.bind(this);
 
@@ -30,8 +20,14 @@ export class LogIn extends Component {
   };
 
   handlePasswordChange = (event) => {
-    this.setState({ pass: event.target.value });
+    this.setState({ password: event.target.value });
   };
+
+  somethingHappen(){
+    return(
+      this.state.happen
+    );
+  }
 
 /*
 Aqui tendríamos que comprobar que el user y la password están en la base de datos para acceder.
@@ -42,16 +38,21 @@ Por ahora pongo uno predefinido
     
       var params = {
         username: this.state.username,
-        password: this.state.pass,
+        password: this.state.password,
       };
       console.log(params);
-      const formBody = prepareBody(params);    
-      return fetch("https://test.castiello.tk:8443/public/login?username="+this.state.username+"&password="+this.state.pass,{method: "POST"})
+      return fetch("https://test.castiello.tk:8443/public/login?username="+this.state.username+"&password="+this.state.password,
+          {
+            method: "POST",
+            credentials: 'include'
+          }
+        )
       .then((response) => response.json() )
       .then((responseData) => {
         console.log(responseData);
-        if(this.state.name==='' || this.state.pass===''){
-          alert('EMPTY BOXES, TRY GOING');
+        if(this.state.username==='' || this.state.password===''){
+          this.setState({happen:"EMPTY BOXES, TRY AGAIN"});
+          alert('EMPTY BOXES, TRY AGAIN');
         }else if(responseData.success){
           this.props.LogNow();
         }else{
@@ -60,26 +61,7 @@ Por ahora pongo uno predefinido
         }      
       }).catch(function(e) {
         alert( e.message);
-      } )   
-/*
-    if(this.state.username==='' || this.state.pass===''){
-      alert('EMPTY BOXES, TRY GOING');
-      return
-    }
-
-      fetch('https://test.castiello.tk:8443/public/login?username=Miguel&password=prueba')
-      .then( response => response.text()  )
-      .then( texto => alert( texto ));
-   */     
-        
-   /* fetch('https://test.castiello.tk:8443/public/login?username='+this.state.name+'&password='+this.state.pass).then(
-     
-      results => {
-        results.json()
-
-      });
-*/
-    
+      } )       
   }
   
   render() {
@@ -98,12 +80,16 @@ Por ahora pongo uno predefinido
           </p>
 
           <p className="Password">
-            <input type="password" value={this.state.pass} onChange={this.handlePasswordChange} placeholder="Password" />
+            <input type="password" value={this.state.password} onChange={this.handlePasswordChange} placeholder="Password" />
           </p> 
 
           <button onClick={this.TryLog}>
             LOG IN
           </button>
+
+          <p>
+            {this.somethingHappen()}
+          </p>
           
           <p>
             <a href="http://www.marca.com/">

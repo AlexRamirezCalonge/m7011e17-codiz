@@ -5,86 +5,130 @@ export class Selection extends Component {
   constructor(props){
     super(props)
     this.state={
+      themes: [],
+      difficulties: [],
       themeId: 0,
       difficultyId: 0
     }
     this.Question = this.Question.bind(this);
   }
 
-  Question() {
-    this.props.goQuestion();
+
+  componentWillMount(){
+    fetch("https://test.castiello.tk:8443/private/theme/getAll",{
+      method: "GET",
+      credentials: 'include'
+    })
+    .then((response) => {
+      return response.json()
+    })
+    .then((themes) => {
+      this.setState({ themes: themes })
+    })
+
+    fetch("https://test.castiello.tk:8443/private/difficulty/getAll",{
+      method: "GET",
+      credentials: 'include'
+    })
+    .then((response) => {
+      return response.json()
+    })
+    .then((difficulties) => {
+      this.setState({ difficulties: difficulties })
+    })
+
   }
 
-  handleThemeChange = (event) => {
-    this.setState({themeId: event.target.value});
-  };
+  createThemeOption(){
+    var array = [];
+    for(var i=0; i<this.state.themes.length; i++){
+      array.push(
+        <option key={this.state.themes[i].themeID} value={this.state.themes[i].themeID}>
+          {this.state.themes[i].title}
+        </option>
+      )
+    }
+    return array;
+  }
 
-  handleDifficultyChange = (event) => {
+createDifficultiesOption(){
+    var array = [];
+    for(var i=0; i<this.state.difficulties.length; i++){
+      array.push(
+        <option key={this.state.difficulties[i].difficultyID} value={this.state.difficulties[i].difficultyID}>
+          {this.state.difficulties[i].title}
+        </option>
+      )
+    }
+    return array;
+  }
+
+
+
+  Question() {
+    this.props.goQuestion();       
+  }
+
+  handleThemeChange = (event)=>{
+    this.setState({themeId: event.target.value});
+    this.props.handleThemeChange(event.target.value);
+  }
+
+  handleDifficultyChange = (event)=>{
     this.setState({difficultyId: event.target.value});
-  };
+    this.props.handleDifficultyChange(event.target.value);
+  }
 
   render() {
+    if(this.state.themes.length > 0){
+      return (
+        <div className = "App-intro">
+          <h2>
+            Select the theme
+          </h2>
+
+          <select id="theme" onChange={this.handleThemeChange}>
+
+            <option value="0">
+              Select one option
+            </option>
+
+            {this.createThemeOption()}
+
+          </select>
+
+          <h2>
+            Select the dfficulty
+          </h2>
+
+          <select id="difficulties" onChange={this.handleDifficultyChange}>
+
+            <option value="0">
+              Select one option
+            </option>
+
+            {this.createDifficultiesOption()}
+
+          </select>
+          <p>
+            You choose theme number: {this.state.themeId} 
+          </p>
+          <p>
+            You choose difficulty level: {this.state.difficultyId}
+          </p>
+          <p>
+            <button className="StartPlay" onClick={this.Question}>
+              START
+            </button>
+          </p>
+        </div>
+      );
+    }
+
     return (
       <div className = "App-intro">
-        <h2>
-          Select the theme
-        </h2>
-
-        <select id="theme" onChange={this.handleThemeChange}>
-
-          <option value="0">
-            Select one option
-          </option>
-
-          <option value="1">
-            1. Basic Coding
-          </option>
-
-          <option value="2">
-            2. JavaScript
-          </option>
-
-          <option value="3">
-            3. XML
-          </option>
-
-        </select>
-
-        <h2>
-          Select the dfficulty
-        </h2>
-
-        <select id="difficulties" onChange={this.handleDifficultyChange}>
-
-          <option value="0">
-            Select one option
-          </option>
-
-          <option value="1">
-            1. Easy
-          </option>
-
-          <option value="2">
-            2. Medium
-          </option>
-
-          <option value="3">
-            3. Hard
-          </option>
-
-        </select>
-        <p>
-          You choose theme number: {this.state.themeId} 
-        </p>
-        <p>
-          You choose difficulty level: {this.state.difficultyId}
-        </p>
-        <p>
-          <button className="StartPlay" onClick={this.Question}>
-            START
-          </button>
-        </p>
+        <h2>LOADING</h2>
       </div>
-    );
+      );
   }
 }
