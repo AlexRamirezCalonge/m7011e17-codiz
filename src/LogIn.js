@@ -52,12 +52,10 @@ Por ahora pongo uno predefinido
         console.log(responseData);
         if(this.state.username==='' || this.state.password===''){
           this.setState({happen:"EMPTY BOXES, TRY AGAIN"});
-          alert('EMPTY BOXES, TRY AGAIN');
         }else if(responseData.success){
           this.props.LogNow();
         }else{
-          alert('INCORRECT USERNAME OR PASSWORD')
-          console.log("Incorrect login")
+          this.setState({happen:"INCORRECT USERNAME OR PASSWORD"});
         }      
       }).catch(function(e) {
         alert( e.message);
