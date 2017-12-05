@@ -15,7 +15,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogged: false
+      isLogged: false,
+      themeId: 0,
+      difficultyId: 0
     }
     this.homepage = this.homepage.bind(this);
     this.changeLogin = this.changeLogin.bind(this);
@@ -38,9 +40,11 @@ class App extends Component {
       case 2:
         return (<SignIn Signed={this.homepage}/>);
       case 3:
-        return (<Selection goQuestion= {this.changeQuestion}/>);
+        return (<Selection themeId={this.state.themeId} difficultyId={this.state.difficultyId} 
+          goQuestion= {this.changeQuestion} handleThemeChange={this.handleThemeChange} 
+          handleDifficultyChange={this.handleDifficultyChange} />);
       case 4:
-        return (<Question />);
+        return (<Question themeId={this.state.themeId} difficultyId={this.state.difficultyId}/>);
       case 5:
         return (<LogOut LogNow={this.trueLog} Nothing={this.homepage}/>);
       case 6:
@@ -49,6 +53,14 @@ class App extends Component {
         return (<MainContent goSelection= {this.changeSelection} Log={this.logged}/>);
     }
   }
+
+  handleThemeChange = (themeId) => {
+    this.setState({themeId: themeId});
+  };
+
+  handleDifficultyChange = (difficultyId) => {
+    this.setState({difficultyId: difficultyId});
+  };
 
   logged(){
     if(!this.state.isLogged){

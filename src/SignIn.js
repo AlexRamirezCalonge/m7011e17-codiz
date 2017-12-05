@@ -7,17 +7,17 @@ export class SignIn extends Component {
   constructor(props){
     super(props)
     this.state= {
-      name: '',
-      pass: '',
+      username: '',
+      password: '',
       email: '',
-      repeatPass: ''
+      repeatPassword: ''
     }
     this.TrySignIn = this.TrySignIn.bind(this);
     this.signComplete = this.signComplete.bind(this);
   }
 
   handleNameChange = (event) => {
-    this.setState({ name: event.target.value });
+    this.setState({ username: event.target.value });
   };
 
   handleEmailChange = (event) => {
@@ -25,17 +25,12 @@ export class SignIn extends Component {
   };
 
   handleRepeatPassChange = (event) => {
-    this.setState({ repeatPass: event.target.value });
+    this.setState({ repeatPassword: event.target.value });
   };
 
   handlePasswordChange = (event) => {
-    this.setState({ pass: event.target.value });
+    this.setState({ password: event.target.value });
   };
-
-  /*
-  Lo suyo sería que esta función cogiese los datos puestos en las cajas y mandase un correo a la direccion introducida con
-  el usuario y la contraseña, además de escribirlo en la base de datos
-  */
 
   signComplete(){
     this.props.Signed();
@@ -45,23 +40,64 @@ export class SignIn extends Component {
   Habría que meter varias condiciones:
     Que todos los campos estén rellenados --> Hecho
     Que las dos contraseñas sean las mismas --> Hecho
-    Que no se utilice el mismo nick y el mismo email que ya se use --> Hecho
-  Modificar lo del usuario y email con los que lea de la base de datos
+    Que el correa tenga . y @
+    Que las contraseñas tengan 8 caracteres mínimo
+    Que no se utilice el mismo nick y el mismo email que ya se use
   */
+  TrySignIn = () =>  {
+    
+      var params = {
+        username: this.state.username,
+        password: this.state.password,
+        email: this.state.email,
+      };
+      console.log(params);
 
+//      CAMBIAR LAS ALERT
+
+      return fetch("https://test.castiello.tk:8443/public/register",
+          {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+              username: this.state.username,
+              password: this.state.password,
+              email: this.state.email,
+            })
+          }
+        )
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log(responseData);
+        if(this.state.username==='' || this.state.password==='' || this.state.email==='' || this.state.repeatPassword===''){
+          alert('EMPTY BOXES, TRY AGAIN');
+        }else if(this.state.password !== this.state.repeatPassword){
+          alert('IT IS NOT THE SAME PASSWORD, TRY AGAIN')
+        }
+        else if(responseData.success){
+          alert('YOU HAVE BEEN REGISTERED SUCCESFULLY')
+          this.signComplete();
+        }else {
+          alert('USERNAME ALREADY TAKEN')
+          console.log("Incorrect sign in")
+        }      
+      })       
+  }
+/*
   TrySignIn(){
-    if(this.state.name==='' || this.state.pass==='' || this.state.email==='' || this.state.repeatPass===''){
+    if(this.state.username==='' || this.state.password==='' || this.state.email==='' || this.state.repeatPassword===''){
       alert('EMPTY BOXES, TRY AGAIN');
-    }else if(this.state.name==='Alex' || this.state.email==='alex.ramirez.calonge@gmail.com'){
+    }else if(this.state.username==='Alex' || this.state.email==='alex.ramirez.calonge@gmail.com'){
+      //En funcion de la respuesta de la database
       alert('USERNAME OR EMAIL ALREADY USED, TRY AGAIN');
-    }else if(this.state.pass !== this.state.repeatPass){
+    }else if(this.state.password !== this.state.repeatPassword){
       alert('IT IS NOT THE SAME PASSWORD, TRY AGAIN');
     }else{
       alert('YOU HAD BEEN SIGNED SUCCESFULLY. CHECK YOUR EMAIL');
-      {this.signComplete()}
+      this.signComplete()
     }
   }
-  
+  */
   render() {
     return (
       <div className="App-intro">
@@ -74,15 +110,15 @@ export class SignIn extends Component {
         </h1>
 
           <p className="User">
-            <input type="text" value={this.state.name} onChange={this.handleNameChange} placeholder="Username" />
+            <input type="text" value={this.state.username} onChange={this.handleNameChange} placeholder="Username" />
           </p>
 
           <p className="Password">
-            <input type="password" value={this.state.pass} onChange={this.handlePasswordChange} placeholder="Password"/>
+            <input type="password" value={this.state.password} onChange={this.handlePasswordChange} placeholder="Password"/>
           </p> 
 
           <p className="RPassword">
-            <input type="password" value={this.state.repeatPass} onChange={this.handleRepeatPassChange} placeholder="Repeat Password"/>
+            <input type="password" value={this.state.repeatPassword} onChange={this.handleRepeatPassChange} placeholder="Repeat Password"/>
           </p> 
 
           <p className="Email">
