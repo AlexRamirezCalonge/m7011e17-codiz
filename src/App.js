@@ -8,7 +8,6 @@ import { SignIn } from './SignIn.js';
 import { Question } from './Question.js';
 import { LogOut } from './LogOut.js';
 import { Ranking } from './Ranking.js';
-
 import './App.css';
 
 class App extends Component {
@@ -44,7 +43,7 @@ class App extends Component {
           goQuestion= {this.changeQuestion} handleThemeChange={this.handleThemeChange} 
           handleDifficultyChange={this.handleDifficultyChange} />);
       case 4:
-        return (<Question themeId={this.state.themeId} difficultyId={this.state.difficultyId}/>);
+        return (<Question themeId={this.state.themeId} difficultyId={this.state.difficultyId} home={this.homepage}/>);
       case 5:
         return (<LogOut LogNow={this.trueLog} Nothing={this.homepage}/>);
       case 6:
@@ -64,7 +63,7 @@ class App extends Component {
 
   logged(){
     if(!this.state.isLogged){
-      alert("LOG IN FIRST, PLEASE")
+
     }else{
       this.changeSelection();
     }

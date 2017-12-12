@@ -12,6 +12,7 @@ export class Question extends Component {
       quizID: 0,
       score: -1
     }
+    this.goHome=this.goHome.bind(this)
   }
 
   componentWillMount() {
@@ -21,6 +22,8 @@ export class Question extends Component {
       credentials: 'include'
     })
     .then((response) => {
+            console.log(response);
+
       return response.json()
     })
     .then((quiz) => {
@@ -30,6 +33,10 @@ export class Question extends Component {
       });     
     })
 
+  }
+
+  goHome(){
+    this.props.home();
   }
 
   sendAnswer = (event, selected) => {
@@ -90,6 +97,9 @@ export class Question extends Component {
           <h2>
             Your final score is : {this.state.score}
           </h2>
+          <button className="Play" onClick={this.goHome}>
+            GO HOME
+          </button>
         </div>
       );
     }

@@ -47,8 +47,8 @@ export class SignIn extends Component {
   Habría que meter varias condiciones:
     Que todos los campos estén rellenados --> Hecho
     Que las dos contraseñas sean las mismas --> Hecho
-    Que el correa tenga . y @
-    Que las contraseñas tengan 8 caracteres mínimo
+    Que el correa tenga . y @ --> Hecho
+    Que las contraseñas tengan 8 caracteres mínimo --> Hecho
     Que no se utilice el mismo nick y el mismo email que ya se use
   */
   TrySignIn = () =>  {
@@ -59,8 +59,6 @@ export class SignIn extends Component {
         email: this.state.email,
       };
       console.log(params);
-
-//      CAMBIAR LAS ALERT
 
       return fetch("https://test.castiello.tk:8443/public/register",
           {
@@ -78,16 +76,17 @@ export class SignIn extends Component {
         console.log(responseData);
         if(this.state.username==='' || this.state.password==='' || this.state.email==='' || this.state.repeatPassword===''){
           this.setState({happen:"EMPTY BOXES, TRY AGAIN"});
+        }else if(this.state.email.indexOf('@') === -1 || this.state.email.indexOf('.') === -1){
+          this.setState({happen:"IT IS NOT A VALID EMAIL, TRY AGAIN"});
+        }else if (this.state.password.length < 8){
+          this.setState({happen:"PASSWORD MUST CONTAIN 8 CHARACTERS AT LEAST, TRY AGAIN"});
         }else if(this.state.password !== this.state.repeatPassword){
           this.setState({happen:"IT IS NOT THE SAME PASSWORD, TRY AGAIN"});
-        }
-        else if(responseData.success){
-          this.setState({happen:"YOU HAVE BEEN REGISTERED SUCCESFULLY"});
+        }else if(responseData.success){
           alert('YOU HAVE BEEN REGISTERED SUCCESFULLY')
           this.signComplete();
         }else {
-          this.setState({happen:"USERNAME ALREADY TAKEN"});
-          console.log("Incorrect sign in")
+          this.setState({happen:"USERNAME OR EMAIL ALREADY TAKEN"});
         }      
       })       
   }
