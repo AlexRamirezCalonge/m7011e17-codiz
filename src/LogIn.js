@@ -87,13 +87,7 @@ Por ahora pongo uno predefinido
 
           <p>
             {this.somethingHappen()}
-          </p>
-          
-          <p>
-            <a href="http://www.marca.com/">
-              You forgot your password?
-            </a>
-          </p>       
+          </p>      
         </div>
     );
   }

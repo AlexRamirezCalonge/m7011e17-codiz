@@ -11,6 +11,7 @@ export class Selection extends Component {
       difficultyId: 0
     }
     this.Question = this.Question.bind(this);
+    this.somethingHappen = this.somethingHappen.bind(this);
   }
 
 
@@ -66,7 +67,19 @@ createDifficultiesOption(){
 
 
   Question() {
-    this.props.goQuestion();       
+    if(this.state.difficultyId===0 || this.state.themeId===0){
+      this.setState(
+        {happen: "INCORRECT DIFFICULTY OR THEME, TRY AGAIN"}
+      );
+    }else{
+      this.props.goQuestion();       
+    }
+  }
+
+  somethingHappen() {
+    return(
+      this.state.happen
+    );
   }
 
   handleThemeChange = (event)=>{
@@ -116,6 +129,7 @@ createDifficultiesOption(){
           <p>
             You choose difficulty level: {this.state.difficultyId}
           </p>
+          {this.somethingHappen()}
           <p>
             <button className="StartPlay" onClick={this.Question}>
               START

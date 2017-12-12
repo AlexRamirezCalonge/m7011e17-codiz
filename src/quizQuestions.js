@@ -246,3 +246,221 @@ export var quizQuestions = [
   },
 ]
 
+How to write an IF statement in JavaScript?
+
+ if i == 5 then
+ if (i == 5)  correct
+ if i = 5 then 
+ if i = 5 
+
+
+How to write an IF statement for executing some code if "i" is NOT equal to 5?
+
+ if i <> 5
+ if (i <> 5)
+ if i =! 5 then
+ if (i != 5) correct
+
+
+  How does a WHILE loop start?
+
+   
+ while (i <= 10) correct
+ while i = 1 to 10
+
+   How does a FOR loop start?
+
+ for (i <= 5; i++)
+ for (i = 0; i <= 5)
+ for i = 1 to 5
+ for (i = 0; i <= 5; i++) correct
+
+
+   How do you round the number 7.25, to the nearest integer?
+
+ Math.rnd(7.25)
+ round(7.25)
+ rnd(7.25)
+ Math.round(7.25) correct
+
+ How do you find the number with the highest value of x and y?
+
+ top(x, y)
+ Math.ceil(x, y)
+ Math.max(x, y) correct
+ ceil(x, y)
+
+How can you detect the client's browser name?
+
+ client.navName 
+ navigator.appName correct
+ browser.name  
+
+
+ How do you declare a JavaScript variable?
+
+ v carName;
+ variable carName;
+ var carName; correct
+
+
+
+Which operator is used to assign a value to a variable?
+
+ = correct
+ -
+ x
+ *
+
+ What will the following code return: Boolean(10 > 9)
+
+ NaN
+ true correct
+ false
+
+
+Is JavaScript case-sensitive?
+
+ No
+ Yes correct
+
+
+What is the correct way to write a JavaScript array?
+
+ var colors = 1 = ("red"), 2 = ("green"), 3 = ("blue")
+ var colors = "red", "green", "blue"
+ var colors = ["red", "green", "blue"]
+ var colors = (1:"red", 2:"green", 3:"blue")
+
+
+ var colors = ["red", "green", "blue"]
+ var colors = 1 = ("red"), 2 = ("green"), 3 = ("blue")
+ var colors = "red", "green", "blue"
+ var colors = (1:"red", 2:"green", 3:"blue")
+
+
+
+
+
+
+ XML
+
+ What does XML stand for? --> HECHO
+
+ eXtensible Markup Language CORRECT
+ eXtra Modern Link
+ Example Markup Language
+ X-Markup Language
+
+ There is a way of describing XML data, how? --> HECHO
+
+ XML uses a description node to describe data 
+ XML uses XSL to describe data
+ XML uses a DTD to describe the data CORRECT
+
+ XML's goal is to replace HTML --> HECHO
+
+ True
+ False CORRECT
+
+ What is the correct syntax of the declaration which defines the XML version? --> HECHO
+
+ <?xml version="1.0"?> CORRECT
+ <?xml version="1.0" />
+ <xml version="1.0" />
+
+What does DTD stand for? --> HECHO
+
+ Document Type Definition CORRECT
+ Dynamic Type Definition
+ Direct Type Definition
+ Do The Dance
+
+ Which statement is true? --> HECHO
+
+ All XML elements must be lower case 
+ All the statements are true 
+ All XML documents must have a DTD 
+ All XML elements must be properly closed CORRECT
+
+ Which statement is true? --> HECHO
+
+ All the statements are true CORRECT
+ XML documents must have a root tag 
+ XML tags are case sensitive 
+ XML elements must be properly nested
+
+ XML preserves white spaces --> HECHO
+
+ False
+ True CORRECT
+
+ XML elements cannot be empty --> HECHO
+
+ True
+ False CORRECT
+
+ Which is not a correct name for an XML element? --> HECHO
+
+ All 3 names are incorrect 
+ <Note>
+ <h1>
+ <1dollar> CORRECT
+
+ Which is not a correct name for an XML element? --> HECHO
+
+ <NAME> 
+ <age>
+ <first name> CORRECT
+ All 3 names are incorrect 
+
+Which is not a correct name for an XML element? --> HECHO
+
+ <7eleven> 
+ <xmldocument>
+ <phone number> 
+ All 3 names are incorrect CORRECT
+
+ XML attribute values must always be enclosed in quotes --> HECHO
+
+ False
+ True CORRECT
+
+ What does XSL stand for? --> HECHO
+
+ eXtra Style Language  
+ eXpandable Style Language
+ eXtensible Style Listing
+ eXtensible Stylesheet Language CORRECT
+
+ What is a correct way of referring to a stylesheet called "mystyle.xsl" ? --> HECHO
+
+ <link type="text/xsl" href="mystyle.xsl" />  
+ <?xml-stylesheet type="text/xsl" href="mystyle.xsl" ?> CORRECT
+ <stylesheet type="text/xsl" href="mystyle.xsl" />
+
+Which statement is true? --> HECHO
+
+ Attributes must always be present 
+ None of the statements are true CORRECT
+ Attributes must occur in defined order
+ Both statements are true
+
+ What are XML entities used for? --> HECHO
+
+ Entities define shortcuts to standard elements 
+ Entities define shortcuts to standard text or special characters CORRECT
+ Entities define shortcuts to standard attributes
+
+ What is an XML instance? --> HECHO
+
+ An XML document CORRECT
+ An XML element
+ An XML attribute
+
+
+Which XML DOM object represents a node in the node tree? --> HECHO
+
+ The node object CORRECT
+ The nodeList object
+ The document object

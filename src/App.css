@@ -1,47 +1,97 @@
-.App {
-  background-color: #296;
-  min-height: calc(100vh);
-}
-
-.Nav-bar{
-  background-color: #266;
-  height: 80px;
-}
-
-button{
-    font-weight: 600;
-    font-size: 20px;
-    color: #ffffff;
-    background-color: #1883ba;
+@media only screen and (max-device-width:640px) {
+    .App {
+    background-color: #296;
+    min-height: calc(100vh);
   }
 
-.App-logo {
-  margin-left: 50px;
-  height: 70px;
+  .Nav-bar{
+    background-color: #266;
+    height: 80px;
+  }
+
+  button{
+      font-weight: 600;
+      font-size: 20px;
+      color: #ffffff;
+      background-color: #1883ba;
+    }
+
+  .App-logo {
+    margin-left: 50px;
+    height: 70px;
+  }
+
+  .Play, .Answer, .StartPlay, .LogoutButtons{
+    width: 150px;
+    font-size: 30px;
+  }
+
+  .Content{
+    background-color: #298;
+  }
+
+  .Log-in{
+    position: absolute;
+    right: 15px;
+  }
+
+  .Sign-in{
+    position: absolute;
+    right: 15px;
+    top: 45px;
+  }
+
+  .App-intro {
+    text-align: center;
+    font-size: large;
+  }
 }
 
-.Play, .Answer, .StartPlay, .LogoutButtons{
-  width: 500px;
-  font-size: 60px;
-}
+@media only screen and (min-device-width:640px) {
+  .App {
+    background-color: #296;
+    min-height: calc(100vh);
+  }
 
-.Content{
-  background-color: #298;
-}
+  .Nav-bar{
+    background-color: #266;
+    height: 80px;
+  }
 
-.Log-in{
-  position: absolute;
-  right: 15px;
-}
+  button{
+      font-weight: 600;
+      font-size: 20px;
+      color: #ffffff;
+      background-color: #1883ba;
+    }
 
-.Sign-in{
-  position: absolute;
-  right: 15px;
-  top: 45px;
-}
+  .App-logo {
+    margin-left: 50px;
+    height: 70px;
+  }
 
-.App-intro {
-  text-align: center;
-  font-size: large;
-}
+  .Play, .Answer, .StartPlay, .LogoutButtons{
+    width: 500px;
+    font-size: 60px;
+  }
 
+  .Content{
+    background-color: #298;
+  }
+
+  .Log-in{
+    position: absolute;
+    right: 15px;
+  }
+
+  .Sign-in{
+    position: absolute;
+    right: 15px;
+    top: 45px;
+  }
+
+  .App-intro {
+    text-align: center;
+    font-size: large;
+  }
+}
