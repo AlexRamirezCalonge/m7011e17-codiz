@@ -99,11 +99,10 @@ createDifficultiesOption(){
           <h2>
             Select the theme
           </h2>
-
-          <select id="theme" onChange={this.handleThemeChange}>
+          <select id="theme" onChange={this.handleThemeChange} className="wrapper-dropdown-1" tabindex="1">
 
             <option value="0">
-              Select one option
+              Select: Theme
             </option>
 
             {this.createThemeOption()}
@@ -111,13 +110,12 @@ createDifficultiesOption(){
           </select>
 
           <h2>
-            Select the dfficulty
+            Select the difficulty
           </h2>
-
           <select id="difficulties" onChange={this.handleDifficultyChange}>
 
             <option value="0">
-              Select one option
+              Select: Difficulty
             </option>
 
             {this.createDifficultiesOption()}

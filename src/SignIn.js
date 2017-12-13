@@ -98,31 +98,33 @@ export class SignIn extends Component {
           <img src={logo} className="Main-logo" alt="logo" />
         </p> 
 
-        <h1>
-          Create a [CodiZ] account
-        </h1>
+        <div class="login-page">
+          <div class="form">
+            
+              <p className="User">
+                <input type="text" value={this.state.username} onChange={this.handleNameChange} placeholder="Username" />
+              </p>
 
-          <p className="User">
-            <input type="text" value={this.state.username} onChange={this.handleNameChange} placeholder="Username" />
-          </p>
+              <p className="Password">
+                <input type="password" value={this.state.password} onChange={this.handlePasswordChange} placeholder="Password"/>
+              </p> 
 
-          <p className="Password">
-            <input type="password" value={this.state.password} onChange={this.handlePasswordChange} placeholder="Password"/>
-          </p> 
+              <p className="RPassword">
+                <input type="password" value={this.state.repeatPassword} onChange={this.handleRepeatPassChange} placeholder="Repeat Password"/>
+              </p> 
 
-          <p className="RPassword">
-            <input type="password" value={this.state.repeatPassword} onChange={this.handleRepeatPassChange} placeholder="Repeat Password"/>
-          </p> 
-
-          <p className="Email">
-            <input type="text" value={this.state.email} onChange={this.handleEmailChange} placeholder="Email"/>
-          </p> 
-          <p>
-            {this.somethingHappen()}
-          </p>
-          <button className="Enter" onClick={this.TrySignIn}>
-            SIGN IN
-          </button> 
+              <p className="Email">
+                <input type="text" value={this.state.email} onChange={this.handleEmailChange} placeholder="Email"/>
+              </p> 
+              <p>
+                {this.somethingHappen()}
+              </p>
+              <button className="Enter" onClick={this.TrySignIn}>
+                SIGN IN
+              </button> 
+            
+            </div>      
+          </div>
         </div>
     );
   }

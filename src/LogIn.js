@@ -69,26 +69,28 @@ Por ahora pongo uno predefinido
           <img src={logo} className="Main-logo" alt="logo" />
         </p> 
 
-        <h1>
-          Log in to [CodiZ]
-        </h1>
+        <div class="login-page">
+          <div class="form">
+            
+              <p className="User">
+                <input type="text" value={this.state.username} onChange={this.handleNameChange} placeholder="Username" />
+              </p>
 
-          <p className="User">
-            <input type="text" value={this.state.username} onChange={this.handleNameChange} placeholder="Username" />
-          </p>
+              <p className="Password">
+                <input type="password" value={this.state.password} onChange={this.handlePasswordChange} placeholder="Password" />
+              </p> 
 
-          <p className="Password">
-            <input type="password" value={this.state.password} onChange={this.handlePasswordChange} placeholder="Password" />
-          </p> 
+              <button onClick={this.TryLog}>
+                LOG IN
+              </button>
 
-          <button onClick={this.TryLog}>
-            LOG IN
-          </button>
-
-          <p>
-            {this.somethingHappen()}
-          </p>      
+              <p>
+                {this.somethingHappen()}
+              </p>
+            
+          </div>      
         </div>
+      </div>
     );
   }
 }
