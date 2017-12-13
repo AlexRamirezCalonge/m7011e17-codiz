@@ -10,20 +10,19 @@
   }
 
   button{
-      font-weight: 600;
-      font-size: 20px;
-      color: #ffffff;
-      background-color: #1883ba;
-    }
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #1883ba;
+  }
 
   .App-logo {
-    margin-left: 50px;
-    height: 70px;
+    height: 65px;
   }
 
   .Play, .Answer, .StartPlay, .LogoutButtons{
-    width: 150px;
-    font-size: 30px;
+    width: 180px;
+    font-size: 20px;
   }
 
   .Content{
@@ -41,9 +40,21 @@
     top: 45px;
   }
 
+  .Avatar{
+    max-height: 100px;
+  }
+
+  .TableTop{
+    margin-left: 185px;
+  }
+
+  .TableUser{
+    margin-left: 155px;
+  }
+
   .App-intro {
     text-align: center;
-    font-size: large;
+    font-size: medium;
   }
 }
 
@@ -59,11 +70,11 @@
   }
 
   button{
-      font-weight: 600;
-      font-size: 20px;
-      color: #ffffff;
-      background-color: #1883ba;
-    }
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #1883ba;
+  }
 
   .App-logo {
     margin-left: 50px;
@@ -90,7 +101,19 @@
     top: 45px;
   }
 
-  .App-intro {
+  .Avatar{
+    max-height: 165px;
+  }
+
+  .TableTop{
+    margin-left: 625px;
+  }
+
+  .TableUser{
+    margin-left: 580px;
+  }
+
+  .App-intro{
     text-align: center;
     font-size: large;
   }
