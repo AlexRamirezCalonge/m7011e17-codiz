@@ -84,15 +84,12 @@ export class Question extends Component {
      })         
   }
 
-
-
-
   render() {
     if(this.state.questionNumber>=10 && this.state.score >= 0){
       return(
         <div className="App-intro">
           <h2>
-            Thank You for Play
+            Thank you for playing
           </h2> 
           <h2>
             Your final score is : {this.state.score}
@@ -111,18 +108,18 @@ export class Question extends Component {
               Question {this.state.questionNumber+1}: {this.state.questions[this.state.questionNumber].title}
             </h2>
             <p>
-              <button className="Play" onClick={(e) => this.sendAnswer(e, this.state.questions[this.state.questionNumber].correct) } >
+              <button className="Answer" onClick={(e) => this.sendAnswer(e, this.state.questions[this.state.questionNumber].correct) } >
                 {this.state.questions[this.state.questionNumber].correct}
               </button> 
-              <button className="Play" onClick={(e) => this.sendAnswer(e, this.state.questions[this.state.questionNumber].answer2) } >
+              <button className="Answer" onClick={(e) => this.sendAnswer(e, this.state.questions[this.state.questionNumber].answer2) } >
                 {this.state.questions[this.state.questionNumber].answer2}
               </button>          
             </p>
             <p>
-              <button className="Play" onClick={(e) => this.sendAnswer(e, this.state.questions[this.state.questionNumber].answer3) }>
+              <button className="Answer" onClick={(e) => this.sendAnswer(e, this.state.questions[this.state.questionNumber].answer3) }>
                 {this.state.questions[this.state.questionNumber].answer3}
               </button>
-              <button className="Play" onClick={(e) => this.sendAnswer(e, this.state.questions[this.state.questionNumber].answer4) }>
+              <button className="Answer" onClick={(e) => this.sendAnswer(e, this.state.questions[this.state.questionNumber].answer4) }>
                 {this.state.questions[this.state.questionNumber].answer4}
               </button>        
             </p>

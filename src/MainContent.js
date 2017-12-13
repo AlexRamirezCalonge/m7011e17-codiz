@@ -41,10 +41,7 @@ export class MainContent extends Component {
           <p >
             <img src={logo} className="Main-logo" alt="logo" />
           </p>  
-          <h1> 
-            Welcome to [Codiz]
-          </h1>
-           {this.somethingHappen()}
+          {this.somethingHappen()}
           <p>
             <button className="Play" onClick={this.myClick}>
               Play Now

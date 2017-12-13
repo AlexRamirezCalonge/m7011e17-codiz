@@ -167,7 +167,9 @@ createTopScores(){
           <h2> 
             Your scores
           </h2>
-          <table className="TableUser">
+          <table>
+            <tr>
+            </tr>
             <tr> 
               <th>Theme</th>
               <th>Difficulty</th>
@@ -178,7 +180,7 @@ createTopScores(){
           <h2> 
             TOP users
           </h2>
-          <table className="TableTop">
+          <table>
             <tr> 
               <th>User</th>
               <th>Score</th>
