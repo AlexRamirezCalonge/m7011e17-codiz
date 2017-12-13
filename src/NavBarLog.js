@@ -35,7 +35,7 @@ export class NavBarLog extends Component {
         </button>
         
         <button className="Sign-in" onClick={this.Ranking}>
-          Ranking
+          MyCodiZ
         </button>
       </div>
       );

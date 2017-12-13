@@ -8,6 +8,8 @@ export class Ranking extends Component {
     this.Selection = this.Selection.bind(this);
     this.myClick = this.myClick.bind(this);
     this.state = {
+      scores : [],
+      topScore : [],
       file: '',
       imagePreviewUrl: ''
     };
@@ -15,8 +17,18 @@ export class Ranking extends Component {
 
   _handleSubmit(e) {
     e.preventDefault();
-    //upload the image selected at the database
-    console.log('handle uploading-', this.state.file);
+    var formData = new FormData();
+    formData.append("file",this.state.file);
+    formData.append("extension",".png");
+      return fetch("https://test.castiello.tk:8443/private/user/setAvatar",
+          {
+            method: "POST",
+            credentials: 'include',
+            mode: "no-cors",
+            //headers: {"Content-Type": "application/x-www-form-urlencoded"},
+            body: formData
+          }
+        )
   }
 
   _handleImageChange(e) {
@@ -45,79 +57,102 @@ export class Ranking extends Component {
     this.props.goSelection();
   }
 
-  GetRankingUser = () =>  {
-
-  //Hay que pasar el usernameId en función del user
-    var params = {
-        usernameId: this.state.usernameId,
-    };
-    console.log(params);
+  componentWillMount() {
     
-      return fetch("https://test.castiello.tk:8443//private/score/getByUser?user="+this.state.usernameId,
-          {
-            method: "GET",
-            credentials: 'include'
-          }
-        )
-      .then((response) => response.json() )
-      .then((responseData) => {
-        console.log(responseData);
-        //Sacar el valor de la base de datos y pintarla
-      }).catch(function(e) {
-        alert( e.message);
-      } )       
+    fetch("https://test.castiello.tk:8443/private/score/getByUser",
+      {
+        method: "GET",
+        credentials: 'include'
+      }
+    )
+    .then((response) => {
+      return response.json() 
+    })
+    .then((scoresList) => {
+      this.setState({ scores: scoresList })
+    })   
+
+    fetch("https://test.castiello.tk:8443/private/score/top",
+      {
+        method: "GET",
+        credentials: 'include'
+      }
+    )
+    .then((response) => {
+      return response.json() 
+    })
+    .then((topList) => {
+      console.log(topList);
+      this.setState({ topScore: topList })
+    }) 
+
+
+    fetch("https://test.castiello.tk:8443/private/user/getAvatar",
+      {
+        method: "GET",
+        credentials: 'include',
+        headers: {"Accept": "application/octet-stream"}
+      }
+    )
+    .then((response) => {
+      console.log(response.body)
+      return response.blob();
+    })
+    .then((image) => {
+      console.log(image)
+      let reader = new FileReader();
+
+      reader.onloadend = () => {
+        this.setState({
+          imagePreviewUrl: reader.result
+        });
+      }
+     // console.log(this.state.imagePreviewUrl)
+      reader.readAsDataURL(image)
+    })
+
   }
   
-
-  GetRankingTop = () =>  {
-    
-      return fetch("https://test.castiello.tk:8443//private/score/top",
-          {
-            method: "GET",
-            credentials: 'include'
-          }
-        )
-      .then((response) => response.json() )
-      .then((responseData) => {
-        console.log(responseData);
-        //Sacar el valor de la base de datos y pintarla
-      }).catch(function(e) {
-        alert( e.message);
-      } )       
+  createUserScores(){
+    var array = [];
+    for(var i=0; i<this.state.scores.length; i++){
+      array.push(
+        <tr key={this.state.scores[i].answersRight} value={this.state.scores[i].scoreID}>
+          <td>{this.state.scores[i].quiz.theme.title}</td>
+          <td>{this.state.scores[i].quiz.difficulty.title}</td>
+          <td>{this.state.scores[i].answersRight}</td>
+        </tr>
+      )
+    }
+    return array;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+createTopScores(){
+    var array = [];
+    for(var i=0; i<this.state.topScore.length; i++){
+      array.push(
+        <tr key={this.state.topScore[i].answersRight} value={this.state.topScore[i].scoreID}>
+          <td>{this.state.topScore[i][0]}</td>
+          <td>{this.state.topScore[i][1]}</td>
+        </tr>
+      )
+    }
+    return array;
+  }
 
   render() {
     let {imagePreviewUrl} = this.state;
     let $imagePreview = null;
     if (imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} alt="avatar"/>);
+      $imagePreview = (<img className="Avatar" src={imagePreviewUrl} alt="avatar"/>);
     } else {
       $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
     }
-    return (
-        <div className="App-intro">
-          <p >
-            <div className="imgPreview">
-              {$imagePreview}
-            </div>
-          </p>  
 
+    if(this.state.scores.length > 0 ){
+    return (  
+        <div className="App-intro">
+            {$imagePreview}
           <form onSubmit={(e)=>this._handleSubmit(e)}>
             <input className="fileInput" 
               type="file" 
@@ -125,19 +160,38 @@ export class Ranking extends Component {
             <p>
               <button className="submitButton" 
                 type="submit" 
-                onClick={(e)=>this._handleSubmit(e)}>Upload Avatar Image</button>
+                onClick={(e)=>this._handleSubmit(e)}>Upload Avatar Image
+              </button>
             </p>
           </form>
-
           <h2> 
-            This is your scores
+            Your scores
           </h2>
-          <p>
-            
-            Aquí se pone la función que llama a los scores del user
-          </p>
-          
+          <table className="TableUser">
+            <tr> 
+              <th>Theme</th>
+              <th>Difficulty</th>
+              <th>Score</th>
+            </tr>
+            {this.createUserScores()}
+          </table>
+          <h2> 
+            TOP users
+          </h2>
+          <table className="TableTop">
+            <tr> 
+              <th>User</th>
+              <th>Score</th>
+            </tr>
+            {this.createTopScores()}
+          </table>
         </div>
     );
+    }
+    return (
+      <div className = "App-intro">
+        <h2>LOADING</h2>
+      </div>
+      );
   }
 }

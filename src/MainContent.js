@@ -50,12 +50,6 @@ export class MainContent extends Component {
               Play Now
             </button>
           </p>
-
-          <p>
-            <button className="PlayNoRegister" onClick={this.Selection}>
-              Play without registration
-            </button>
-          </p> 
         </div>
     );
   }
