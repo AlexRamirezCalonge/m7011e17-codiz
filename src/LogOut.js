@@ -25,9 +25,9 @@ export class LogOut extends Component {
           <img src={logo} className="Main-logo" alt="logo" />
         </p> 
 
-        <h1>
+        <h2>
           Do you want to log out from [CodiZ]?
-        </h1>
+        </h2>
 
           <button className="LogoutButtons" onClick={this.DaleLog}>
             YES

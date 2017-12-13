@@ -6,7 +6,6 @@ import { MainContent } from './MainContent.js';
 import { Selection } from './Selection.js';
 import { SignIn } from './SignIn.js';
 import { Question } from './Question.js';
-import { LogOut } from './LogOut.js';
 import { Ranking } from './Ranking.js';
 import './App.css';
 
@@ -24,7 +23,6 @@ class App extends Component {
     this.changeComponent = this.changeComponent.bind(this);
     this.changeSelection = this.changeSelection.bind(this);
     this.changeQuestion = this.changeQuestion.bind(this);
-    this.changeLogout = this.changeLogout.bind(this);
     this.changeRanking = this.changeRanking.bind(this);
     this.logged = this.logged.bind(this);
     this.trueLog = this.trueLog.bind(this);
@@ -45,8 +43,6 @@ class App extends Component {
       case 4:
         return (<Question themeId={this.state.themeId} difficultyId={this.state.difficultyId} home={this.homepage}/>);
       case 5:
-        return (<LogOut LogNow={this.trueLog} Nothing={this.homepage}/>);
-      case 6:
         return (<Ranking />);
       default:
         return (<MainContent goSelection= {this.changeSelection} Log={this.logged}/>);
@@ -106,15 +102,9 @@ class App extends Component {
     });
   }
 
-  changeLogout() {
-    this.setState({ 
-      id : 5
-    });
-  } 
-
   changeRanking() {
     this.setState({ 
-      id : 6
+      id : 5
     });
   }  
 
@@ -122,7 +112,7 @@ class App extends Component {
       return(
         <div className="App">
           {!this.state.isLogged ? <NavBar goSignin= {this.changeSignin} goLogin= {this.changeLogin} home= {this.homepage}/> : 
-          <NavBarLog goRanking= {this.changeRanking} goLogout= {this.changeLogout} home= {this.homepage}/>}
+          <NavBarLog goRanking= {this.changeRanking} goLogout= {this.trueLog} home= {this.homepage}/>}
 
           {this.changeComponent()}
 

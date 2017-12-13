@@ -34,8 +34,9 @@
   }
 
   .Answer{
-    width: 180px;
-    font-size: 15px;
+    width: 200px;
+    font-size: 12px;
+    max-height: 80px;
   }
 
   .Content{
@@ -94,6 +95,7 @@
   .App {
     background-color: #296;
     min-height: calc(100vh);
+    font-family: Georgia;
   }
 
   .Nav-bar{
@@ -122,18 +124,20 @@
   }
 
   .App-logo {
-    margin-left: 50px;
-    height: 70px;
+    margin-left: 30px;
+    height: 80px;
   }
 
   .Play, .StartPlay, .LogoutButtons{
     width: 500px;
-    font-size: 60px;
+    max-height: 80px;
+    font-size: 50px;
   }
 
   .Answer{
-    width: 500px;
-    font-size: 40px;
+    width: 550px;
+    font-size: 23px;
+    max-height: 80px;
   }
 
   .Content{
@@ -181,7 +185,32 @@
   }
 }
 
+.Alert{
+  color: #C70039;
+    /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shake 0.5s; 
+    /* When the animation is finished, start again */
+    animation-iteration-count: infinite; 
+}
 
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.LogoutButtons{
+  width: 150px;
+  font-size: 20px;
+}
 .login-page {
   width: 360px;
   padding: 0% 0 0;

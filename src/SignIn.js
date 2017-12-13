@@ -116,7 +116,7 @@ export class SignIn extends Component {
               <p className="Email">
                 <input type="text" value={this.state.email} onChange={this.handleEmailChange} placeholder="Email"/>
               </p> 
-              <p>
+              <p className="Alert">
                 {this.somethingHappen()}
               </p>
               <button className="Enter" onClick={this.TrySignIn}>

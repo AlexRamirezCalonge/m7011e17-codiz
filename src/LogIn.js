@@ -80,13 +80,13 @@ Por ahora pongo uno predefinido
                 <input type="password" value={this.state.password} onChange={this.handlePasswordChange} placeholder="Password" />
               </p> 
 
+              <p className="Alert">
+                {this.somethingHappen()}
+              </p>
+
               <button onClick={this.TryLog}>
                 LOG IN
               </button>
-
-              <p>
-                {this.somethingHappen()}
-              </p>
             
           </div>      
         </div>
