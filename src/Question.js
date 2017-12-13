@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from './logo.Bv9ettdV9dsBUGw0pY';
 import './App.css';
 
 export class Question extends Component {
@@ -95,7 +96,7 @@ export class Question extends Component {
             Your final score is : {this.state.score}
           </h2>
           <button className="Play" onClick={this.goHome}>
-            GO HOME
+            Go Back
           </button>
         </div>
       );
@@ -104,8 +105,11 @@ export class Question extends Component {
     if(this.state.questions.length>0 && this.state.questionNumber<10){
       return (
           <div className="App-intro"> 
-            <h2> 
-              Question {this.state.questionNumber+1}: {this.state.questions[this.state.questionNumber].title}
+            <h1> 
+              Question {this.state.questionNumber+1}
+            </h1>
+            <h2>
+              {this.state.questions[this.state.questionNumber].title}
             </h2>
             <p>
               <button className="Answer" onClick={(e) => this.sendAnswer(e, this.state.questions[this.state.questionNumber].correct) } >
@@ -128,6 +132,9 @@ export class Question extends Component {
     }else{
       return(
         <div className="App-intro">
+          <p>
+            <img src={logo} className="Main-logo" alt="logo" />
+          </p> 
           <h2>LOADING</h2>
         </div>
       );

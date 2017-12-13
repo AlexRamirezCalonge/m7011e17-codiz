@@ -40,8 +40,10 @@ export class MainContent extends Component {
         <div className="App-intro">
           <p >
             <img src={logo} className="Main-logo" alt="logo" />
-          </p>  
-          {this.somethingHappen()}
+          </p> 
+          <p className="Alert"> 
+            {this.somethingHappen()}
+          </p>
           <p>
             <button className="Play" onClick={this.myClick}>
               Play Now

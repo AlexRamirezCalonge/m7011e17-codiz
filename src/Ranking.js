@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from './logo.Bv9ettdV9dsBUGw0pY';
 import './App.css';
 
 export class Ranking extends Component {
@@ -192,6 +193,9 @@ createTopScores(){
     }
     return (
       <div className = "App-intro">
+        <p>
+          <img src={logo} className="Main-logo" alt="logo" />
+        </p> 
         <h2>LOADING</h2>
       </div>
       );

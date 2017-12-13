@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from './logo.Bv9ettdV9dsBUGw0pY';
 import './App.css';
 
 export class Selection extends Component {
@@ -64,8 +65,6 @@ createDifficultiesOption(){
     return array;
   }
 
-
-
   Question() {
     if(this.state.difficultyId===0 || this.state.themeId===0){
       this.setState(
@@ -95,50 +94,54 @@ createDifficultiesOption(){
   render() {
     if(this.state.themes.length > 0){
       return (
-        <div className = "App-intro">
-          <h2>
-            Select the theme
-          </h2>
-          <select id="theme" onChange={this.handleThemeChange} className="wrapper-dropdown-1" tabindex="1">
-
-            <option value="0">
-              Select: Theme
-            </option>
-
-            {this.createThemeOption()}
-
-          </select>
-
-          <h2>
-            Select the difficulty
-          </h2>
-          <select id="difficulties" onChange={this.handleDifficultyChange}>
-
-            <option value="0">
-              Select: Difficulty
-            </option>
-
-            {this.createDifficultiesOption()}
-
-          </select>
+        <div className="App-intro">
           <p>
-            You choose theme number: {this.state.themeId} 
-          </p>
-          <p>
-            You choose difficulty level: {this.state.difficultyId}
-          </p>
-          {this.somethingHappen()}
-          <p>
-            <button className="StartPlay" onClick={this.Question}>
-              START
-            </button>
-          </p>
+            <img src={logo} className="Main-logo" alt="logo" />
+          </p> 
+          <div class="form">
+            <h2>
+              Select the theme
+            </h2>
+            <select id="theme" onChange={this.handleThemeChange} className="wrapper-dropdown-1" tabindex="1">
+
+              <option value="0">
+                Select: Theme
+              </option>
+
+              {this.createThemeOption()}
+
+            </select>
+
+            <h2>
+              Select the difficulty
+            </h2>
+            <select id="difficulties" onChange={this.handleDifficultyChange}>
+
+              <option value="0">
+                Select: Difficulty
+              </option>
+
+              {this.createDifficultiesOption()}
+
+            </select>
+            <p className="Alert">
+              {this.somethingHappen()}
+            </p>
+            <p>
+              <button className="StartPlay" onClick={this.Question}>
+                START
+              </button>
+            </p>
+          </div>
         </div>
       );
     }
 
     return (
       <div className = "App-intro">
+        <p>
+          <img src={logo} className="Main-logo" alt="logo" />
+        </p> 
         <h2>LOADING</h2>
       </div>
       );
