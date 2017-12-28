@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.Bv9ettdV9dsBUGw0pY';
 import './App.css';
 
-export class LogIn extends Component {
+class LogIn extends Component {
 
   constructor(props){
     super(props)
@@ -12,7 +12,6 @@ export class LogIn extends Component {
       happen: ''
     }
     this.TryLog = this.TryLog.bind(this);
-
   }
 
   handleNameChange = (event) => {
@@ -41,25 +40,28 @@ Por ahora pongo uno predefinido
         password: this.state.password,
       };
       console.log(params);
-      return fetch("https://test.castiello.tk:8443/public/login?username="+this.state.username+"&password="+this.state.password,
-          {
-            method: "POST",
-            credentials: 'include'
-          }
-        )
-      .then((response) => response.json() )
-      .then((responseData) => {
-        console.log(responseData);
-        if(this.state.username==='' || this.state.password===''){
+      if(this.state.username==='' || this.state.password===''){
           this.setState({happen:"EMPTY BOXES, TRY AGAIN"});
-        }else if(responseData.success){
-          this.props.LogNow();
-        }else{
-          this.setState({happen:"INCORRECT USERNAME OR PASSWORD"});
-        }      
-      }).catch(function(e) {
-        alert( e.message);
-      } )       
+      }else{
+        return fetch("https://test.castiello.tk:8443/public/login?username="+this.state.username+"&password="+this.state.password,
+            {
+              method: "POST",
+              credentials: 'include'
+            }
+          )
+        .then((response) => response.json() )
+        .then((responseData) => {
+          console.log(responseData);
+          if(responseData.success){
+            this.props.isLogged();
+            this.props.history.replace('/');
+          }else{
+            this.setState({happen:"INCORRECT USERNAME OR PASSWORD"});
+          }      
+        }).catch(function(e) {
+          alert( e.message);
+        } )       
+    }
   }
   
   render() {
@@ -69,8 +71,8 @@ Por ahora pongo uno predefinido
           <img src={logo} className="Main-logo" alt="logo" />
         </p> 
 
-        <div class="login-page">
-          <div class="form">
+        <div className="login-page">
+          <div className="form">
             
               <p className="User">
                 <input type="text" value={this.state.username} onChange={this.handleNameChange} placeholder="Username" />
@@ -94,3 +96,5 @@ Por ahora pongo uno predefinido
     );
   }
 }
+
+export default LogIn;

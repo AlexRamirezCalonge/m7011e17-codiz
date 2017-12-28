@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.Bv9ettdV9dsBUGw0pY';
 import './App.css';
 
-export class Question extends Component {
+class Question extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -23,8 +23,6 @@ export class Question extends Component {
       credentials: 'include'
     })
     .then((response) => {
-            console.log(response);
-
       return response.json()
     })
     .then((quiz) => {
@@ -37,20 +35,17 @@ export class Question extends Component {
   }
 
   goHome(){
-    this.props.home();
+    this.props.history.push('/');
   }
 
   sendAnswer = (event, selected) => {
     var qn = this.state.questionNumber;
-
-    console.log(qn)
       this.setState({
         questionNumber: qn+1
       }); 
     
     qn= qn+1;
 
-    console.log(qn)
     
     fetch("https://test.castiello.tk:8443/private/answer/create",
         {
@@ -142,3 +137,5 @@ export class Question extends Component {
 
   }
 }
+
+export default Question;

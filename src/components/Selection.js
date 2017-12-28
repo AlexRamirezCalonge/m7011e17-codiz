@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.Bv9ettdV9dsBUGw0pY';
 import './App.css';
 
-export class Selection extends Component {
+class Selection extends Component {
   constructor(props){
     super(props)
     this.state={
@@ -71,7 +71,7 @@ createDifficultiesOption(){
         {happen: "INCORRECT DIFFICULTY OR THEME, TRY AGAIN"}
       );
     }else{
-      this.props.goQuestion();       
+      this.props.history.push('/question');
     }
   }
 
@@ -98,7 +98,7 @@ createDifficultiesOption(){
           <p>
             <img src={logo} className="Main-logo" alt="logo" />
           </p> 
-          <div class="form">
+          <div className="form">
             <h2>
               Select the theme
             </h2>
@@ -147,3 +147,5 @@ createDifficultiesOption(){
       );
   }
 }
+
+export default Selection;

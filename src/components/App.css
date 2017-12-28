@@ -25,7 +25,7 @@
   }
 
   .App-logo {
-    height: 65px;
+    height: 65px; 
   }
 
   .Play, .StartPlay, .LogoutButtons{
@@ -44,7 +44,7 @@
   }
 
   .Log-in, .Sign-in{
-    height: 35px;
+    height: 40px;
     width:  120px;
     font-size: 18px;
   }
@@ -57,7 +57,7 @@
   .Sign-in{
     position: absolute;
     right: 15px;
-    top: 45px;
+    top: 50px;
   }
 
   .Avatar{
@@ -152,7 +152,7 @@
   .Sign-in{
     position: absolute;
     right: 15px;
-    top: 45px;
+    top: 55px;
   }
 
   .Avatar{

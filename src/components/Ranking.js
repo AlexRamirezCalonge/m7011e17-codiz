@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.Bv9ettdV9dsBUGw0pY';
 import './App.css';
 
-export class Ranking extends Component {
+class Ranking extends Component {
 
   constructor(props){
     super(props)
@@ -201,3 +201,5 @@ createTopScores(){
       );
   }
 }
+
+export default Ranking

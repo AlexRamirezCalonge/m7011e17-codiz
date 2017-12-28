@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import logo from './logo.Bv9ettdV9dsBUGw0pY';
 import './App.css';
 
-export class MainContent extends Component {
+class MainContent extends Component {
 
   constructor(props){
     super(props)
     this.state={
-      happen:''
+      happen:'',
+      confirmLogged: props.checkLogged
     }
-    this.Selection = this.Selection.bind(this);
     this.myClick = this.myClick.bind(this);
     this.somethingHappen = this.somethingHappen.bind(this);
   }
@@ -21,19 +21,14 @@ export class MainContent extends Component {
   }
 
   myClick(){
-    if(this.props.Log()){
-      this.Selection();
+    if(this.state.confirmLogged===true){
+      this.props.history.replace('/selection');
     }else{
       this.setState({
         happen: "LOG IN FIRST, PLEASE"
       });
     }
   }
-
-  Selection(){
-    this.props.goSelection();
-  }
-
 
   render() {
     return (
@@ -53,3 +48,5 @@ export class MainContent extends Component {
     );
   }
 }
+
+export default MainContent;

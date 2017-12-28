@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.Bv9ettdV9dsBUGw0pY';
 import './App.css';
 
-export class SignIn extends Component {
+class SignIn extends Component {
 
   constructor(props){
     super(props)
@@ -60,21 +60,7 @@ export class SignIn extends Component {
       };
       console.log(params);
 
-      return fetch("https://test.castiello.tk:8443/public/register",
-          {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-              username: this.state.username,
-              password: this.state.password,
-              email: this.state.email,
-            })
-          }
-        )
-      .then((response) => response.json())
-      .then((responseData) => {
-        console.log(responseData);
-        if(this.state.username==='' || this.state.password==='' || this.state.email==='' || this.state.repeatPassword===''){
+      if(this.state.username==='' || this.state.password==='' || this.state.email==='' || this.state.repeatPassword===''){
           this.setState({happen:"EMPTY BOXES, TRY AGAIN"});
         }else if(this.state.email.indexOf('@') === -1 || this.state.email.indexOf('.') === -1){
           this.setState({happen:"IT IS NOT A VALID EMAIL, TRY AGAIN"});
@@ -82,13 +68,29 @@ export class SignIn extends Component {
           this.setState({happen:"PASSWORD MUST CONTAIN 8 CHARACTERS AT LEAST, TRY AGAIN"});
         }else if(this.state.password !== this.state.repeatPassword){
           this.setState({happen:"IT IS NOT THE SAME PASSWORD, TRY AGAIN"});
-        }else if(responseData.success){
-          alert('YOU HAVE BEEN REGISTERED SUCCESFULLY')
-          this.signComplete();
-        }else {
-          this.setState({happen:"USERNAME OR EMAIL ALREADY TAKEN"});
-        }      
-      })       
+        }else{
+          return fetch("https://test.castiello.tk:8443/public/register",
+              {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                  username: this.state.username,
+                  password: this.state.password,
+                  email: this.state.email,
+                })
+              }
+            )
+          .then((response) => response.json())
+          .then((responseData) => {
+            console.log(responseData);
+            if(responseData.success){
+              alert('YOU HAVE BEEN REGISTERED SUCCESFULLY')
+              this.props.history.replace('/');
+            }else {
+              this.setState({happen:"USERNAME OR EMAIL ALREADY TAKEN"});
+            }      
+          })    
+      }   
   }
 
   render() {
@@ -129,3 +131,5 @@ export class SignIn extends Component {
     );
   }
 }
+
+export default SignIn;
