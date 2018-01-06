@@ -150,7 +150,7 @@ createTopScores(){
       $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
     }
 
-    if(this.state.scores.length > 0 ){
+    if(this.state.scores.length >= 0 || this.state.topScore.length >= 0){
     return (  
         <div className="App-intro">
             {$imagePreview}
