@@ -11,10 +11,12 @@ class Question extends Component {
       difficulty: props.difficultyId,
       theme: props.themeId,
       quizID: 0,
-      score: -1
+      score: -1,
+      scorePoint: 0
     }
     this.goHome=this.goHome.bind(this)
   }
+
 
   componentWillMount() {
 
@@ -31,7 +33,6 @@ class Question extends Component {
         questions : quiz.questions
       });     
     })
-
   }
 
   goHome(){
@@ -39,6 +40,7 @@ class Question extends Component {
   }
 
   sendAnswer = (event, selected) => {
+
     var qn = this.state.questionNumber;
       this.setState({
         questionNumber: qn+1
@@ -46,6 +48,16 @@ class Question extends Component {
     
     qn= qn+1;
 
+
+    if(selected===this.state.questions[this.state.questionNumber].correct){
+
+      this.point=this.state.scorePoint;
+      this.setState({
+        scorePoint: this.point +1
+      });
+
+      this.point=this.point+1;
+    }
     
     fetch("https://test.castiello.tk:8443/private/answer/create",
         {
@@ -81,6 +93,7 @@ class Question extends Component {
   }
 
   render() {
+    this.point=this.state.scorePoint;
     if(this.state.questionNumber>=10 && this.state.score >= 0){
       return(
         <div className="App-intro">
@@ -98,30 +111,45 @@ class Question extends Component {
     }
 
     if(this.state.questions.length>0 && this.state.questionNumber<10){
+      
+
+      var answers = [this.state.questions[this.state.questionNumber].correct,this.state.questions[this.state.questionNumber].answer2,
+              this.state.questions[this.state.questionNumber].answer3, this.state.questions[this.state.questionNumber].answer4]
+    
+      answers = answers.sort(function() {return Math.random() - 0.5});
+
+      var answer1 = answers[0]
+      var answer2 = answers[1]
+      var answer3 = answers[2]
+      var answer4 = answers[3]
+
       return (
           <div className="App-intro"> 
             <h1> 
-              Question {this.state.questionNumber+1}
+              Question {this.state.questionNumber+1} of 10
             </h1>
             <h2>
               {this.state.questions[this.state.questionNumber].title}
             </h2>
             <p>
-              <button className="Answer" onClick={(e) => this.sendAnswer(e, this.state.questions[this.state.questionNumber].correct) } >
-                {this.state.questions[this.state.questionNumber].correct}
+              <button className="Answer" onClick={(e) => this.sendAnswer(e, answer1) } >
+                {answer1}
               </button> 
-              <button className="Answer" onClick={(e) => this.sendAnswer(e, this.state.questions[this.state.questionNumber].answer2) } >
-                {this.state.questions[this.state.questionNumber].answer2}
+              <button className="Answer" onClick={(e) => this.sendAnswer(e, answer2) } >
+                {answer2}
               </button>          
             </p>
             <p>
-              <button className="Answer" onClick={(e) => this.sendAnswer(e, this.state.questions[this.state.questionNumber].answer3) }>
-                {this.state.questions[this.state.questionNumber].answer3}
+              <button className="Answer" onClick={(e) => this.sendAnswer(e, answer3) }>
+                {answer3}
               </button>
-              <button className="Answer" onClick={(e) => this.sendAnswer(e, this.state.questions[this.state.questionNumber].answer4) }>
-                {this.state.questions[this.state.questionNumber].answer4}
+              <button className="Answer" onClick={(e) => this.sendAnswer(e, answer4) }>
+                {answer4}
               </button>        
             </p>
+            <h2>
+              SCORE: {this.point}
+            </h2>
           </div>
       );
     }else{

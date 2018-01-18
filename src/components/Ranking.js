@@ -157,6 +157,7 @@ createTopScores(){
           <form onSubmit={(e)=>this._handleSubmit(e)}>
             <input className="fileInput" 
               type="file" 
+              accept=".png"
               onChange={(e)=>this._handleImageChange(e)} />
             <p>
               <button className="submitButton" 
